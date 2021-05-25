@@ -95,17 +95,16 @@ HB = TMROH
  
 t_elapse = (long)256*HB + LB;
 t_elapse = 65536*overflow + t_lapse;
- 
-char t_elapsechar = (char)t_elapse;
- 
+
+ ///////////////////////////////// FALTA FOR
+char t_elapsechar [] = (char)t_elapse;
  LCD_cmd(0xC0); //set cursor to second line
  send2LCD(t_elapsechar); //send frequency
+////////////////////////////////// 
  
- LCD_cmd(0x14); //shift cursor position to right
- LCD_cmd(0x14); //shift cursor position to right
- LCD_cmd(0x14); //shift cursor position to right
- LCD_cmd(0x14); //shift cursor position to right
+
  
+ send2LCD(' '); 
  send2LCD('H'); //send Hz
  send2LCD('z');
 
