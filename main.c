@@ -60,7 +60,11 @@ LCD_E  = 0;
 LCD_init();
  
 LCD_cmd(0x80);//set cursor to first line
-send2LCD("frequency:");
+send2LCD('f');
+send2LCD('r');
+send2LCD('e');
+send2LCD('q');
+send2LCD(':');
 
 T0CON = 0x28; //TIMER0 as 16-bit, no prescaler
 T1CON = 0x36; //TIMER1 for 250 ms overflow
@@ -102,7 +106,8 @@ char t_elapsechar = (char)t_elapse;
  LCD_cmd(0x14); //shift cursor position to right
  LCD_cmd(0x14); //shift cursor position to right
  
- send2LCD("Hz"); //send Hz
+ send2LCD('H'); //send Hz
+ send2LCD('z');
 
 }
 }
