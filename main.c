@@ -50,13 +50,14 @@ void __interrupt (high_priority)  high_priority_ISR(void)
 void main(void)
 {
 portsInit();
-LCD_init();
  
 OSCCON = 0b01110110;// Set the internal oscillator to 8MHz and stable
 LCD_DATA_DIR = 0x00;
 LCD_RS = 0;
 LCD_RW = 0;
 LCD_E  = 0;
+ 
+LCD_init();
  
 LCD_cmd(0x80);//set cursor to first line
 send2LCD("frequency:");
