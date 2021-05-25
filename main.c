@@ -1,7 +1,9 @@
 #include "device_config.h"
 #include <stdlib.h>
 #include <math.h>
+#include <stdio.h>
 #include <time.h>
+
 #define LCD_DATA_R          PORTD
 #define LCD_DATA_W          LATD
 #define LCD_DATA_DIR        TRISD
@@ -60,11 +62,11 @@ LCD_E  = 0;
 LCD_init();
  
 LCD_cmd(0x80);//set cursor to first line
-send2LCD('f');
-send2LCD('r');
-send2LCD('e');
-send2LCD('q');
-send2LCD(':');
+//send2LCD('f');
+//send2LCD('r');
+//send2LCD('e');
+//send2LCD('q');
+//send2LCD(':');
 
 T0CON = 0x28; //TIMER0 as 16-bit, no prescaler
 T1CON = 0x36; //TIMER1 for 250 ms overflow
@@ -91,22 +93,27 @@ TOCON.TMR0ON = 0; // Stop TIMER0
 T1CON.TMR1ON = 0; // Stop TIMER1
 
 LB = TMR0L; //gets TIMER0 values
-HB = TMROH
+HB = TMROH;
  
 t_elapse = (long)256*HB + LB;
 t_elapse = 65536*overflow + t_lapse;
 
- ///////////////////////////////// FALTA FOR
-char t_elapsechar [] = (char)t_elapse;
- LCD_cmd(0xC0); //set cursor to second line
- send2LCD(t_elapsechar); //send frequency
-////////////////////////////////// 
- 
+int a = abs(t_elapse/100);
+int b = abs(t_elapse-a*100)/10);
+int c = abs(t_elapse-a*100-b*10);
 
+char ac = (char)a;
+char bc = (char)b;
+char cc = (char)c;
  
- send2LCD(' '); 
- send2LCD('H'); //send Hz
- send2LCD('z');
+ LCD_cmd(0xC0); //set cursor to second line
+ send2LCD(ac); //send frequency
+ send2LCD(bc);
+ send2LCD(cc);
+ 
+// send2LCD(' '); 
+// send2LCD('H'); //send Hz
+// send2LCD('z');
 
 }
 }
