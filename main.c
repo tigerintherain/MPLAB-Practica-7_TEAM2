@@ -22,8 +22,8 @@ enum por_ACDC {digital, analog};
 //void declaration
 void portsInit(void);
 void LCD_init(void);
-void LCD_cmd(char cx);
-void send2LCD(char xy);
+void LCD_cmd(char);
+void send2LCD(char);
 
 int overflow; //for interrupts
 char cnt;
